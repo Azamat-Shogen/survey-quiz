@@ -10,7 +10,7 @@ const Survey = ({ data, completed, completeSurvey }) => {
     const [title, setTitle] = useState(currentSection.title)
     const [questionIndex, setQuestionIndex] = useState(0)
     const [questionId, setQuestionId] = useState(currentSection.questionIds[questionIndex]);
-    const [question, setQuestion] = useState("...")
+    const [question, setQuestion] = useState("")
     const [answer, setAnswer] = useState("");
     const [bar, setBar] = useState(0);
 
@@ -51,11 +51,18 @@ const Survey = ({ data, completed, completeSurvey }) => {
             .catch(err => console.log(err))
     }
 
+    async function postResults(){
+        await axios.post("https://run.mocky.io/v3/b081763d-eef1-44ab-8bab-3ce008c49bdf", {answer: answer})
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
+    }
+
 
     const handleContinue = (e) => {
         e.preventDefault()
         setBar(bar + 1)
-
+        postResults();
+        setAnswer("")
         if(questionIndex >= currentSection.questionIds.length-1){
             setCurrentSectionNumber(currentSectionNumber + 1)
             setCurrentSection(data.sections[currentSectionNumber + 1])
@@ -64,7 +71,9 @@ const Survey = ({ data, completed, completeSurvey }) => {
         else {setQuestionIndex( prev => prev + 1)}
     }
 
-
+    const handleChange = (e) => {
+        setAnswer(e.target.value)
+    }
 
     function getTotal(arr) {
         let total = 0;
@@ -78,19 +87,20 @@ const Survey = ({ data, completed, completeSurvey }) => {
         <div>
             <hr />
             <Header title={title} />
-            {questionIndex}
+            {/*{questionIndex}*/}
             <form onSubmit={handleContinue}>
                 <div className="container">
                     <div className="question">
-                        <label htmlFor="answer">{question}</label>
+                        <label htmlFor="answer"><h3>{question}</h3></label>
                     </div>
                     <div className="input-class">
                         <input
-                            onChange={() => {}}
+                            onChange={handleChange}
                             id="answer"
                             type="text"
                             placeholder="Answer"
-                            value={""}
+                            required
+                            value={answer}
                         />
                     </div>
 

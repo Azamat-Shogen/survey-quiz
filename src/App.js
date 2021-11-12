@@ -1,9 +1,9 @@
 import './App.css';
 import React from "react";
-import Survey from "./Survey";
+import Survey from "./components/Survey";
 import axios from "axios";
 import "./App.css";
-import AllSet from "./AllSet";
+import AllSet from "./components/AllSet";
 
  class App extends React.Component{
      constructor(props) {
@@ -43,16 +43,17 @@ import AllSet from "./AllSet";
          const {data, started, loading, error, completed } = this.state
          if(completed){ return <AllSet /> }
          if(loading) { return <div>loading...</div> }
+         if(error) { return <div>{error}</div> }
          return <div>
-             { error ? <div>{error}</div> :
-                 <div>
-                     <div> {data.surveyName} </div>
-                     {!started ? <button type="button"
-                                         onClick={this.handleStartSurvey}>Start survey</button> :
-                         <Survey data={data} completed={completed} completeSurvey={this.completeSurvey} />}
+                 <h1>{data.surveyName}</h1>
+                    {!started ? <div>
+                               <p>I Know what you did last summer!</p>
+                                <button type="button" className="start-button"
+                                             onClick={this.handleStartSurvey}>START SURVEY</button>
+                                </div> :
+                     <Survey data={data} completed={completed} completeSurvey={this.completeSurvey} />}
                  </div>
-             }
-         </div>
+
      }
 
 
