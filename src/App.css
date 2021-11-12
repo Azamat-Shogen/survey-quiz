@@ -1,5 +1,9 @@
 .App {
   text-align: center;
+  min-height: 460px;
+  background-color: #cfeff6;
+  padding: 20px;
+  border-radius: 25px;
   max-width: 60%;
   margin: auto;
 }
@@ -28,6 +32,10 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.start-button{
+  margin-top: 20%;
 }
 
 @keyframes App-logo-spin {
