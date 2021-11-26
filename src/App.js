@@ -42,7 +42,7 @@ import AllSet from "./components/AllSet";
      loadPage = () => {
          const {data, started, loading, error, completed } = this.state
          if(completed){ return <AllSet /> }
-         if(loading) { return <div>loading...</div> }
+         if(loading) { return <div> </div> }
          if(error) { return <div>{error}</div> }
          return <div>
                  <h1>{data.surveyName}</h1>

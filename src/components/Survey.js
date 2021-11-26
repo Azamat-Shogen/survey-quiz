@@ -90,10 +90,10 @@ const Survey = ({ data, completed, completeSurvey }) => {
             {/*{questionIndex}*/}
             <form onSubmit={handleContinue}>
                 <div className="container">
-                    <div className="question">
+                    <div className="item question">
                         <label htmlFor="answer"><h3>{question}</h3></label>
                     </div>
-                    <div className="input-class">
+                    <div className="item input-class">
                         <input
                             onChange={handleChange}
                             id="answer"
@@ -103,10 +103,10 @@ const Survey = ({ data, completed, completeSurvey }) => {
                             value={answer}
                         />
                     </div>
-
-                    <div className="continue">
+                    <div className="item continue">
                         <button type="submit" disabled={completed}>continue </button>
                     </div>
+                    <div className="item">sbar</div>
                 </div>
             </form>
         </div>
