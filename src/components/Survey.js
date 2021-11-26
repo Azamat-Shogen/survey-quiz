@@ -83,19 +83,18 @@ const Survey = ({ data, completed, completeSurvey }) => {
     }
 
     const spanStyle = {
-
+      backgroundColor: "#37943f;"
     }
 
 
-    // const getBarItems = () => {
-    //     let arr = []
-    //     for(let i = 1; i <= getTotal(data.sections); i++){
-    //         arr.push(i)
-    //     }
-    //     return arr
-    // }
 
-
+    const getBarItems = () => {
+        let arr = []
+        for(let i = 1; i <= getTotal(data.sections); i++){
+            arr.push(i)
+        }
+        return arr
+    }
 
 
     return (
@@ -122,7 +121,7 @@ const Survey = ({ data, completed, completeSurvey }) => {
                     </div>
                     <div className="bar">
                         {
-                            // getBarItems().map((el, i) => <span className="bar-item" key={i}>{'span '}</span>)
+                            getBarItems().map((el, i) => <span className="bar-item" key={i}>{'span '}</span>)
                         }
                     </div>
                 </div>
