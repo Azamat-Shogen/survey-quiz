@@ -47,14 +47,13 @@ import AllSet from "./components/AllSet";
          return <div>
                  <h1>{data.surveyName}</h1>
                     {!started ? <div>
-                               <p>I Know what you did last summer!</p>
+                                <p>A simple mock api survey demo!</p>
                                 <button type="button" className="start-button"
                                              onClick={this.handleStartSurvey}>START SURVEY</button>
                                 </div> :
                      <Survey data={data} completed={completed} completeSurvey={this.completeSurvey} />}
                  </div>
-
-     }
+         }
 
 
     render() {
