@@ -37,7 +37,6 @@ const Survey = ({ data, completed, completeSurvey }) => {
                 console.log("unmounted from survey")
             }
         }
-
     }, [bar, questionId, questionIndex])
 
 
@@ -69,6 +68,7 @@ const Survey = ({ data, completed, completeSurvey }) => {
             setQuestionIndex(0)
         }
         else {setQuestionIndex( prev => prev + 1)}
+
     }
 
     const handleChange = (e) => {
@@ -79,13 +79,7 @@ const Survey = ({ data, completed, completeSurvey }) => {
         let total = 0;
         arr.forEach(el => total += el.questionIds.length)
         return total;
-
     }
-
-    const spanStyle = {
-      backgroundColor: "#37943f;"
-    }
-
 
 
     const getBarItems = () => {
@@ -95,6 +89,27 @@ const Survey = ({ data, completed, completeSurvey }) => {
         }
         return arr
     }
+
+    const barWidth = 100 / (getTotal(data.sections) - 1)
+
+
+
+    const barSpan = () => {
+        let arr = [];
+        for(let i = 1; i <= bar; i ++){
+            arr.push("")
+        }
+        return (
+
+        arr.map((el, i) =>
+            <span style={{
+                backgroundColor: "#20e531",
+                width: `${barWidth}%`,
+                borderRadius: i === 0 ? "15px 0px 0px 15px" :
+                    i === getBarItems().length-1 ? "0px 15px 15px 0px" : "0px 0px 0px 0px"
+            }}
+                  key={i}>{el}</span>)
+    ) }
 
 
     return (
@@ -119,11 +134,7 @@ const Survey = ({ data, completed, completeSurvey }) => {
                     <div className="item continue">
                         <button type="submit" disabled={completed}>continue </button>
                     </div>
-                    <div className="bar">
-                        {
-                            getBarItems().map((el, i) => <span className="bar-item" key={i}>{'span '}</span>)
-                        }
-                    </div>
+                    <div className="bar">{ barSpan() }</div>
                 </div>
             </form>
         </div>
