@@ -3,6 +3,7 @@ import Header from "./Header";
 import "./survey.css";
 import axios from "axios";
 
+
 const Survey = ({ data, completed, completeSurvey }) => {
 
     const [currentSectionNumber, setCurrentSectionNumber] = useState(0)
@@ -13,7 +14,6 @@ const Survey = ({ data, completed, completeSurvey }) => {
     const [question, setQuestion] = useState("")
     const [answer, setAnswer] = useState("");
     const [bar, setBar] = useState(0);
-
 
 
     useEffect(() => {
@@ -77,17 +77,31 @@ const Survey = ({ data, completed, completeSurvey }) => {
 
     function getTotal(arr) {
         let total = 0;
-        for (let i = 0; i < arr.length; i++) {
-            total += arr[i].questionIds.length;
-        }
-        return total; }
+        arr.forEach(el => total += el.questionIds.length)
+        return total;
+
+    }
+
+    const spanStyle = {
+
+    }
+
+
+    // const getBarItems = () => {
+    //     let arr = []
+    //     for(let i = 1; i <= getTotal(data.sections); i++){
+    //         arr.push(i)
+    //     }
+    //     return arr
+    // }
+
+
 
 
     return (
         <div>
             <hr />
             <Header title={title} />
-            {/*{questionIndex}*/}
             <form onSubmit={handleContinue}>
                 <div className="container">
                     <div className="item question">
@@ -106,7 +120,11 @@ const Survey = ({ data, completed, completeSurvey }) => {
                     <div className="item continue">
                         <button type="submit" disabled={completed}>continue </button>
                     </div>
-                    <div className="item">sbar</div>
+                    <div className="bar">
+                        {
+                            // getBarItems().map((el, i) => <span className="bar-item" key={i}>{'span '}</span>)
+                        }
+                    </div>
                 </div>
             </form>
         </div>
